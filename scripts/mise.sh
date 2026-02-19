@@ -50,5 +50,10 @@ fi
 echo "==> Installing mise tools..."
 mise install
 
+# Set tools as global
+echo "==> Setting tools as global..."
+mise use -g gh@latest
+mise use -g rust@latest
+
 echo "==> mise setup complete!"
 echo "    Restart your shell or run: source $SHELL_RC"
