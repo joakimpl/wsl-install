@@ -23,6 +23,20 @@ sudo apt-get install -y \
     lsb-release \
     software-properties-common
 
+# Ruby/Rails build dependencies (postgresql for pg_restore, libpq-dev for pg gem)
+sudo apt-get install -y \
+    postgresql \
+    libpq-dev \
+    rustc \
+    libssl-dev \
+    libyaml-dev \
+    zlib1g-dev \
+    libgmp-dev
+
+# Disable PostgreSQL server to avoid port 5432 conflict with Docker
+sudo systemctl stop postgresql || true
+sudo systemctl disable postgresql || true
+
 # Git configuration (optional - uncomment and customize)
 # git config --global user.name "Your Name"
 # git config --global user.email "your.email@example.com"
