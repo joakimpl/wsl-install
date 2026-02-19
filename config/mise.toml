@@ -1,9 +1,6 @@
 [tools]
 gh = "latest"
-node = "20"
-ruby = "latest"
 rust = "latest"
-terraform = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = ["ruby"]
