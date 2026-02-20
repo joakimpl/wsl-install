@@ -12,6 +12,7 @@ Modular bash scripts to set up a development environment in WSL Ubuntu.
 ./install.sh --base          # Base packages only
 ./install.sh --mise          # mise + dev tools only
 ./install.sh --docker        # Docker only
+./install.sh --clever        # Clever Cloud CLI only
 ./install.sh --base --mise   # Combine options
 ```
 
@@ -21,6 +22,8 @@ Modular bash scripts to set up a development environment in WSL Ubuntu.
 - Build essentials (gcc, make, etc.)
 - Common utilities (curl, wget, git, jq, htop, tree, unzip)
 - CA certificates and GPG tools
+- Ruby/Rails build dependencies (libpq-dev, libssl-dev, libyaml-dev, etc.)
+- PostgreSQL client tools (pg_restore) - server disabled to avoid port conflicts
 
 ### mise (`scripts/mise.sh`)
 - [mise](https://mise.jdx.dev/) - polyglot runtime manager
@@ -37,6 +40,10 @@ Modular bash scripts to set up a development environment in WSL Ubuntu.
 - Docker Buildx plugin
 - Adds user to docker group
 
+### Clever Cloud CLI (`scripts/clever-cli.sh`)
+- Installs/updates the [Clever Cloud CLI](https://www.clever-cloud.com/doc/cli/) to `~/.local/bin/`
+- Run again to update to the latest version
+
 ## Structure
 
 ```
@@ -46,8 +53,11 @@ wsl-config/
 │   └── mise.toml       # mise tool configuration
 └── scripts/
     ├── base.sh         # Base system packages
+    ├── clever-cli.sh   # Clever Cloud CLI
     ├── docker.sh       # Docker installation
-    └── mise.sh         # mise + dev tools
+    ├── git.sh          # Git configuration
+    ├── mise.sh         # mise + dev tools
+    └── ssh-windows.sh  # Windows OpenSSH symlinks
 ```
 
 ## Customization

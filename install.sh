@@ -40,6 +40,7 @@ Options:
     --docker        Install Docker only
     --ssh           Set up Windows OpenSSH symlinks
     --git           Set up Git configuration
+    --clever        Install Clever Cloud CLI
     -h, --help      Show this help message
 
 Examples:
@@ -60,6 +61,7 @@ INSTALL_MISE=false
 INSTALL_DOCKER=false
 INSTALL_SSH=false
 INSTALL_GIT=false
+INSTALL_CLEVER=false
 INSTALL_ALL=false
 
 if [[ $# -eq 0 ]]; then
@@ -92,6 +94,10 @@ while [[ $# -gt 0 ]]; do
             INSTALL_GIT=true
             shift
             ;;
+        --clever)
+            INSTALL_CLEVER=true
+            shift
+            ;;
         -h|--help)
             usage
             exit 0
@@ -110,6 +116,7 @@ if [[ "$INSTALL_ALL" == true ]]; then
     INSTALL_DOCKER=true
     INSTALL_SSH=true
     INSTALL_GIT=true
+    INSTALL_CLEVER=true
 fi
 
 # Run selected installers
@@ -138,6 +145,11 @@ if [[ "$INSTALL_GIT" == true ]]; then
     bash "${SCRIPT_DIR}/scripts/git.sh"
 fi
 
+if [[ "$INSTALL_CLEVER" == true ]]; then
+    print_header "Installing Clever Cloud CLI"
+    bash "${SCRIPT_DIR}/scripts/clever-cli.sh"
+fi
+
 print_header "Setup Complete!"
 
 echo "Installed components:"
@@ -146,6 +158,7 @@ echo "Installed components:"
 [[ "$INSTALL_DOCKER" == true ]] && echo "  ✓ Docker"
 [[ "$INSTALL_SSH" == true ]] && echo "  ✓ Windows OpenSSH symlinks"
 [[ "$INSTALL_GIT" == true ]] && echo "  ✓ Git configuration"
+[[ "$INSTALL_CLEVER" == true ]] && echo "  ✓ Clever Cloud CLI"
 
 echo ""
 echo "Next steps:"
