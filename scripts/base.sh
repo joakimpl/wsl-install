@@ -31,7 +31,8 @@ sudo apt-get install -y \
     libssl-dev \
     libyaml-dev \
     zlib1g-dev \
-    libgmp-dev
+    libgmp-dev \
+    libvips
 
 # Disable PostgreSQL server to avoid port 5432 conflict with Docker
 sudo systemctl stop postgresql || true
